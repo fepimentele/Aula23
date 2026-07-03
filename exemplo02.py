@@ -13,7 +13,8 @@ try:
     df_plano_execucao = pl.scan_parquet(ENDERECO_DADOS + 'bolsa_familia.parquet')
 
     df_bolsa_familia = df_plano_execucao.collect()
-    print(df_bolsa_familia.head())
+
+    print(df_bolsa_familia.head(10))
 
     # Leitura Direta
 
@@ -32,15 +33,3 @@ try:
 
 except Exception as e:
     print(f'Erro ao ler arquivo .parquet {e}')
-
-try: 
-    #Array
-    array_valor_parcela = np.array(df_bolsa_familia)
-except Exception as e:
-    print(f'Erro ao obter o Array {e}')
-
-try:
-    import matplotlib.pyplot as plt
-    # pip install matplotlib
-    plt.boxplot(array_valor_parcela, vert=False)
-    plt.title('Distribuição Bolsa Família')
